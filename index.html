@@ -97,9 +97,10 @@
         document.querySelector("#unity-container").className = "unity-mobile";
         canvas.className = "unity-mobile";
 
-        // To lower canvas resolution on mobile devices to gain some
-        // performance, uncomment the following line:
-        // config.devicePixelRatio = 1;
+        // Drill: render at no more than twice the CSS pixel size. Phones report 2.6-3x, and at
+        // full density the impact's stacked translucent dust dropped frames; at 2x the GPU fills
+        // roughly half the pixels and the flat art barely softens.
+        config.devicePixelRatio = Math.min(window.devicePixelRatio || 1, 2);
 
 
       } else {
